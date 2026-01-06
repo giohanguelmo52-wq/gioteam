@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>gBuilders</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(180deg,#021821,#04394d,#021821);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* 🌊 FONDO AGUA */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 30% 30%,rgba(77,220,255,.15),transparent 40%),
+    radial-gradient(circle at 70% 60%,rgba(77,220,255,.12),transparent 40%);
+  animation:water 10s infinite alternate ease-in-out;
+  z-index:-1;
+}
+@keyframes water{
+  from{transform:translateY(0)}
+  to{transform:translateY(-35px)}
+}
+
+/* HEADER */
+header{text-align:center;padding:90px 20px}
+header h1{
+  font-family:'Press Start 2P';
+  color:#4ddcff;
+  text-shadow:0 0 25px #4ddcff;
+}
+
+/* IP */
+.ip-box{margin-top:20px;display:flex;justify-content:center;gap:15px}
+.ip{padding:10px 16px;border-radius:12px;border:1px solid #4ddcff}
+.copy-btn{
+  padding:10px 14px;border:none;border-radius:12px;
+  background:#4ddcff;font-weight:bold;cursor:pointer;
+}
+.copy-btn.copied{
+  background:#2ecc71;
+  animation:pulse .6s;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0}
+  50%{box-shadow:0 0 25px #2ecc71}
+  100%{box-shadow:0 0 0}
+}
+
+/* CATEGORIES */
+.categories{
+  max-width:1000px;margin:auto;padding:50px 20px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px
+}
+.cat{
+  background:rgba(255,255,255,.07);
+  padding:40px;border-radius:30px;
+  text-align:center;cursor:pointer;
+  transition:.5s;
+}
+.cat:hover{
+  transform:translateY(-12px) scale(1.07);
+  box-shadow:0 0 45px rgba(77,220,255,.7);
+}
+.cat span{font-size:50px}
+.cat h2{color:#4ddcff}
+
+/* MODALS */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;align-items:center;justify-content:center;
+  z-index:1000
+}
+.modal{
+  background:#052631;
+  padding:40px;border-radius:25px;
+  max-width:520px;width:90%;
+  animation:pop .4s;
+  position:relative;
+}
+@keyframes pop{
+  from{transform:scale(.6);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+.close{
+  position:absolute;top:15px;right:20px;
+  font-size:22px;color:#4ddcff;cursor:pointer;
+}
+
+/* 🌊 REDES SOCIALES CON MOVIMIENTO */
+.socials{
+  margin:60px 0;
+  text-align:center;
+}
+.socials a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:60px;height:60px;
+  border-radius:50%;
+  margin:0 15px;
+  color:#4ddcff;
+  font-size:28px;
+  background:rgba(255,255,255,.06);
+  animation:float 4s ease-in-out infinite;
+  transition:.4s;
+}
+.socials a:nth-child(2){animation-delay:1s}
+.socials a:nth-child(3){animation-delay:2s}
+.socials a:nth-child(4){animation-delay:3s}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0)}
+}
+.socials a:hover{
+  transform:scale(1.2);
+  box-shadow:0 0 30px rgba(77,220,255,.7);
+  color:white;
+}
+
+/* 🤖 BOT */
+.bot{
+  position:fixed;bottom:25px;right:25px;
+  width:60px;height:60px;border-radius:50%;
+  background:#4ddcff;color:#000;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;cursor:pointer;z-index:2000;
+}
+.bot-menu{
+  position:fixed;bottom:100px;right:25px;
+  background:#052631;
+  padding:20px;border-radius:20px;
+  width:280px;
+  opacity:0;pointer-events:none;
+  transform:translateY(20px) scale(.9);
+  transition:.4s;
+}
+.bot-menu.show{
+  opacity:1;pointer-events:auto;
+  transform:translateY(0) scale(1);
+}
+.bot-input{
+  width:100%;padding:8px;border-radius:8px;border:none;margin-top:8px;
+}
+.bot-btn{
+  width:100%;padding:8px;margin-top:8px;
+  background:#4ddcff;border:none;border-radius:8px;
+  font-weight:bold;cursor:pointer;
+}
+
+/* 🎮 ANIMACIÓN "VIDEO" MINECRAFT */
+.minecraft-anim{
+  height:140px;
+  border-radius:15px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #0b5f73,
+      #0b5f73 20px,
+      #0f7a92 20px,
+      #0f7a92 40px
+    );
+  animation:minecraft 6s linear infinite;
+  box-shadow:inset 0 0 30px rgba(0,0,0,.6);
+}
+@keyframes minecraft{
+  from{background-position:0 0}
+  to{background-position:200px 200px}
+}
+
+footer{text-align:center;color:#aaa;padding:20px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>gBuilders</h1>
+  <p>🌊 Servidor acuático de Minecraft</p>
+  <div class="ip-box">
+    <div class="ip">gBuilders.aternos.me</div>
+    <button class="copy-btn" id="copyBtn">Copiar IP</button>
+  </div>
+</header>
+
+<section class="categories">
+  <div class="cat" onclick="openModal('info')"><span>ℹ️</span><h2>Información</h2></div>
+  <div class="cat" onclick="openModal('classes')"><span>🧙‍♂️</span><h2>Clases</h2></div>
+  <div class="cat" onclick="openModal('hours')"><span>⏰</span><h2>Horarios</h2></div>
+</section>
+
+<!-- INFO -->
+<div class="overlay" id="info">
+  <div class="modal"><div class="close" onclick="closeModal('info')">✖</div>
+    <h3>ℹ️ Información</h3>
+    <p>Servidor acuático creativo 🌊<br>
+    Pronto servidor propio.</p>
+  </div>
+</div>
+
+<!-- CLASSES -->
+<div class="overlay" id="classes">
+  <div class="modal"><div class="close" onclick="closeModal('classes')">✖</div>
+    <h3>🧙‍♂️ Clases</h3>
+    <ul>
+      <li>🌊 Aquamancer — 30 min</li>
+      <li>⚔️ Guerrero — 30 min</li>
+      <li>🏗️ Constructor — 1 h</li>
+    </ul>
+  </div>
+</div>
+
+<!-- HOURS -->
+<div class="overlay" id="hours">
+  <div class="modal"><div class="close" onclick="closeModal('hours')">✖</div>
+    <h3>⏰ Horarios</h3>
+    <p>
+      🕓 16:00 – 17:00<br>
+      🕔 18:00 – 19:00<br>
+      🕖 20:00 – 21:00
+    </p>
+  </div>
+</div>
+
+<!-- BOT -->
+<div class="bot" onclick="toggleBot()">🤖</div>
+<div class="bot-menu" id="botMenu">
+  <p>Preguntame 👇</p>
+  <input id="botInput" class="bot-input" placeholder="Ej: todo bien?">
+  <button class="bot-btn" onclick="askBot()">Enviar</button>
+  <p id="botResponse" style="margin-top:10px"></p>
+</div>
+
+<!-- BOT VIDEO -->
+<div class="bot" style="right:100px" onclick="toggleVideo()">🎮</div>
+<div class="bot-menu" id="videoMenu">
+  <p>🌊 Vista Minecraft</p>
+  <div class="minecraft-anim"></div>
+</div>
+
+<!-- SOCIALS -->
+<div class="socials">
+  <a href="#"><i class="fab fa-discord"></i></a>
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#"><i class="fab fa-youtube"></i></a>
+  <a href="#"><i class="fab fa-tiktok"></i></a>
+</div>
+
+<footer>No afiliado a Mojang Studios</footer>
+
+<script>
+const btn=document.getElementById("copyBtn");
+btn.onclick=()=>{
+  navigator.clipboard.writeText("gBuilders.aternos.me");
+  btn.textContent="¡Copiada!";
+  btn.classList.add("copied");
+  setTimeout(()=>{btn.textContent="Copiar IP";btn.classList.remove("copied")},1500);
+};
+
+function openModal(id){document.getElementById(id).style.display="flex"}
+function closeModal(id){document.getElementById(id).style.display="none"}
+
+function toggleBot(){
+  document.getElementById("botMenu").classList.toggle("show");
+}
+function toggleVideo(){
+  document.getElementById("videoMenu").classList.toggle("show");
+}
+
+function askBot(){
+  const t=document.getElementById("botInput").value.toLowerCase();
+  let r="🤖 No entendí 😕";
+  if(t.includes("hola")) r="👋 Hola!";
+  else if(t.includes("todo")) r="😄 Todo bien!";
+  else if(t.includes("ip")) r="🌐 gBuilders.aternos.me";
+  else if(t.includes("horario")) r="⏰ Mirá el menú horarios";
+  document.getElementById("botResponse").textContent=r;
+}
+</script>
+
+</body>
+</html>
